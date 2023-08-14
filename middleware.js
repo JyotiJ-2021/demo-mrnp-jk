@@ -3,8 +3,7 @@ import { NextResponse } from "next/server"
 export function middleware(request) {
   const path = request.nextUrl.pathname
 
-  const isPublicPath =
-    path === "/login" || path === "/register"  
+  const isPublicPath = path === "/login" || path === "/register"
 
   const token = request.cookies.get("todotoken")?.value || ""
 
@@ -24,7 +23,7 @@ export const config = {
     "/profile",
     "/login",
     "/register",
-    
+
     "/posts",
     "/todo",
     "/contact",
