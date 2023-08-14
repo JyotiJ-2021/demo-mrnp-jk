@@ -1,0 +1,124 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import url("https://fonts.googleapis.com/css?family=Raleway:900&display=swap");
+body {
+  background: radial-gradient(
+    circle,
+    rgb(110 147 142 / 50%) 2%,
+    rgb(241 243 245 / 89%) 97%
+  );
+  color: #fff;
+}
+
+.animate-charcter {
+  text-transform: uppercase;
+  background-image: linear-gradient(
+    -225deg,
+    #fdfdff 0%,
+    #0a2749 29%,
+    #5fc2e0 67%,
+    #dbf3e2 100%
+  );
+  background-size: auto auto;
+  background-clip: border-box;
+  background-size: 200% auto;
+  color: #fff;
+  background-clip: text;
+  text-fill-color: transparent;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: textclip 2s linear infinite;
+  display: inline-block;
+  font-family: "Raleway", sans-serif;
+  font-size: 100px;
+}
+
+@keyframes textclip {
+  to {
+    background-position: 200% center;
+  }
+}
+
+.waviy {
+  position: relative;
+  -webkit-box-reflect: below -10px linear-gradient(transparent, rgba(0, 0, 0, 0.2));
+}
+
+@keyframes waviy {
+  0%,
+  40%,
+  100% {
+    transform: translateY(0);
+  }
+
+  20% {
+    transform: translateY(-20px);
+  }
+}
+
+.about {
+  font-family: "Raleway", sans-serif;
+  max-width: 90ch;
+  text-align: center;
+  transform: scale(0.94);
+  animation: scale 3s forwards cubic-bezier(0.5, 1, 0.89, 1);
+}
+
+@keyframes scale {
+  100% {
+    transform: scale(1);
+  }
+}
+
+.about span {
+  display: inline-block;
+  opacity: 0;
+  filter: blur(4px);
+}
+
+.about span {
+  animation: fade-in 0.8s 0.1s forwards cubic-bezier(0.11, 0, 0.5, 0);
+}
+
+@keyframes fade-in {
+  100% {
+    opacity: 1;
+    filter: blur(0);
+  }
+}
+
+@keyframes bounce {
+  0%,
+  20%,
+  50%,
+  80%,
+  100% {
+    transform: translateY(0);
+  }
+
+  40% {
+    transform: translateY(-20px);
+  }
+
+  60% {
+    transform: translateY(-10px);
+  }
+}
+
+/* Apply the bounce animation to the element you want to animate */
+.animate-bounce {
+  animation: bounce 1s;
+}
+.containerBox {
+  min-height: 100vh;
+  place-content: center;
+  place-items: center;
+  display: flex;
+}
+
+@media (max-width: 992px) {
+  .animate-charcter {
+    font-size: 35px;
+  }
+}
