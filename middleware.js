@@ -4,7 +4,7 @@ export function middleware(request) {
   const path = request.nextUrl.pathname
 
   const isPublicPath =
-    path === "/login" || path === "/register" || path === "/verifyemail"
+    path === "/login" || path === "/register"  
 
   const token = request.cookies.get("todotoken")?.value || ""
 
@@ -24,7 +24,7 @@ export const config = {
     "/profile",
     "/login",
     "/register",
-    "/verifyemail",
+    
     "/posts",
     "/todo",
     "/contact",
