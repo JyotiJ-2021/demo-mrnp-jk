@@ -3,10 +3,15 @@ import React, { useState, useEffect } from "react"
 import { usePathname } from "next/navigation"
 import Link from "next/link"
 import { header } from "../app/styles/common"
+import axios from "axios"
+import { useRouter } from "next/navigation"
 
 const Header = () => {
   const path = usePathname()
+  const router = useRouter()
+
   const [open, setOpen] = useState(false)
+  const [isAuth, setIsAuth] = useState(false)
   const navItems = [
     { label: "Home", href: "/" },
     { label: "About", href: "/about" },
@@ -15,35 +20,61 @@ const Header = () => {
     { label: "Todo", href: "/todo" },
   ]
 
+  useEffect(() => {
+    axios
+      .get("/api/getCookies")
+      .then((res) => {
+        setIsAuth(res.data.isAuthenticated)
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+  }, [])
+
+  const logout = async () => {
+    try {
+      await axios.get("/api/logout")
+      window.location.reload()
+      router.push("/login")
+    } catch (error) {
+      console.log(error.message)
+    }
+  }
+
   return (
     <>
       <div className={header.box}>
-        <ul className={header.nav}>
-          {navItems.map((item, i) => {
-            return (
-              <li key={i}>
-                <Link
-                  href={item.href}
-                  className={`${
-                    item.href === path ? header.nav_active : header.nav_inactive
-                  } ${header.nav_link} `}
-                >
-                  {item.label}
-                </Link>
-              </li>
-            )
-          })}
-        </ul>
-        <div className={header.nav_right}>
-          {/* {token ? (
-          <> Logout Profile </>
+        {isAuth ? (
+          <ul className={header.nav}>
+            {navItems.map((item, i) => {
+              return (
+                <li key={i}>
+                  <Link
+                    href={item.href}
+                    className={`${
+                      item.href === path
+                        ? header.nav_active
+                        : header.nav_inactive
+                    } ${header.nav_link} `}
+                  >
+                    {item.label}
+                  </Link>
+                </li>
+              )
+            })}
+          </ul>
         ) : (
-          <>
-            
-          </>
-        )} */}
-          <Link href="/login"> Login</Link> |{" "}
-          <Link href="/register"> Register</Link>
+          <h2 className="text-2xl text-sky-800 font-bold">JOY</h2>
+        )}
+        <div className={header.nav_right}>
+          {!isAuth ? (
+            <>
+              <Link href="/login"> Login</Link> |
+              <Link href="/register"> Register</Link>
+            </>
+          ) : (
+            <p onClick={logout}> Logout</p>
+          )}
         </div>
       </div>
       <div className={header.mb_box}>
@@ -90,13 +121,20 @@ const Header = () => {
               })}
             </ul>
             <div className={header.mb_nav_right}>
-              <Link href="/login" onClick={() => setOpen(false)}>
-                Login
-              </Link>
-              |
-              <Link href="/register" onClick={() => setOpen(false)}>
-                Register
-              </Link>
+              {!isAuth ? (
+                <>
+                  <Link href="/login" onClick={() => setOpen(false)}>
+                    Login
+                  </Link>
+                  |
+                  <Link href="/register" onClick={() => setOpen(false)}>
+                    Register
+                  </Link>
+                </>
+              ) : (
+                <p onClick={logout}> Logout</p>
+              )}
+
               {/**todo show logout when user login and hide login and register */}
             </div>
           </>

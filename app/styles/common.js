@@ -64,16 +64,16 @@ export const login = {
 export const register = {
   box: "max-w-lg mx-auto text-gray-800",
   form: "",
-  heading: "text-2xl text-white font-semibold mb-4",
+  heading: "text-2xl text-sky-800 font-semibold mb-4",
   content: "",
   input: "w-full px-3 py-2 border rounded text-sm",
-  label: "block text-gray-300 text-left text-sm  mb-2",
+  label: "block text-sky-800 text-left text-sm  mb-2",
   button:
     "w-full bg-sky-800 text-white font-semibold py-2 rounded hover:bg-sky-600 cursor-pointer",
   message: "bg-white p-4 text-sm shadow-md rounded-lg animate-fade-in",
-  gender: "block text-gray-300 text-left text-sm  ",
+  gender: "block text-sky-800 text-left text-sm ms-2 ",
   select: "w-full px-3 py-2 border rounded",
-  option: "block text-gray-300 text-xs ",
+  option: "block text-sky-800 text-xs ",
   error: "absolute -bottom-4 text-xs  text-red-400 animate-fade-in",
-  link: "text-center text-white text-sm mt-4",
+  link: "text-center text-sky-800 text-sm mt-4",
 }

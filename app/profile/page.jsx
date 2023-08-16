@@ -1,20 +1,9 @@
 "use client"
 import axios from "axios"
-import Link from "next/link"
 import React, { useEffect, useState } from "react"
-import { useRouter } from "next/navigation"
 
 export default function ProfilePage() {
-  const router = useRouter()
   const [data, setData] = useState([])
-  const logout = async () => {
-    try {
-      await axios.get("/api/logout")
-      router.push("/login")
-    } catch (error) {
-      console.log(error.message)
-    }
-  }
 
   useEffect(() => {
     async function fetchUser() {
@@ -58,14 +47,6 @@ export default function ProfilePage() {
           </div>
         </div>
       )}
-      <hr className="my-4" />
-
-      <button //remove logout from here
-        onClick={logout}
-        className="bg-sky-800 hover:bg-sky-700 text-white font-bold py-2 px-4 rounded"
-      >
-        Logout
-      </button>
     </div>
   )
 }
