@@ -16,8 +16,7 @@ const Header = () => {
     { label: "Home", href: "/" },
     { label: "About", href: "/about" },
     { label: "Contact", href: "/contact" },
-    { label: "Posts", href: "/posts" },
-    { label: "Todo", href: "/todo" },
+    { label: "Posts", href: "/posts" } 
   ]
 
   useEffect(() => {
