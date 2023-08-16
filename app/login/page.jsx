@@ -22,7 +22,7 @@ const Login = () => {
       .then((res) => {
         setLoading(false)
 
-        router.push("/")
+        console.log(res.data)
         if (res.data.message === "Invalid Password") {
           setMessage("You are not logged in yet, please try to register first")
         } else {

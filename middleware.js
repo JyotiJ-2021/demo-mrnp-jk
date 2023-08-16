@@ -3,7 +3,11 @@ let url = process.env.DOMAIN
 export function middleware(request) {
   const path = request.nextUrl.pathname
 
-  const isPublicPath = path === "/login" || path === "/register"
+  const isPublicPath =
+    path === "/login" ||
+    path === "/register" ||
+    path === "/api/login" ||
+    path === "/api/register"
   const token = request.cookies.get("todotoken")?.value || ""
 
   if (isPublicPath && token) {
@@ -11,7 +15,9 @@ export function middleware(request) {
   }
 
   if (!isPublicPath && !token) {
-    return NextResponse.redirect(new URL("/login", request.nextUrl))
+    return NextResponse.redirect(
+      new URL("/login" || "/api/login", request.nextUrl)
+    )
   }
 }
 

@@ -16,7 +16,7 @@ const Header = () => {
     { label: "Home", href: "/" },
     { label: "About", href: "/about" },
     { label: "Contact", href: "/contact" },
-    { label: "Posts", href: "/posts" } 
+    { label: "Posts", href: "/posts" },
   ]
 
   useEffect(() => {
@@ -72,7 +72,9 @@ const Header = () => {
               <Link href="/register"> Register</Link>
             </>
           ) : (
-            <p onClick={logout}> Logout</p>
+            <p onClick={logout} className="cursor-pointer">
+              Logout
+            </p>
           )}
         </div>
       </div>
@@ -97,28 +99,30 @@ const Header = () => {
                 />
               </svg>
             </div>
-            <ul className={header.mb_nav}>
-              {navItems.map((item, i) => {
-                return (
-                  <li
-                    key={i}
-                    className={header.lists}
-                    onClick={() => setOpen(false)}
-                  >
-                    <Link
-                      href={item.href}
-                      className={`${
-                        item.href === path
-                          ? header.nav_active
-                          : header.nav_inactive
-                      } ${header.mb_nav_link} `}
+            {isAuth && (
+              <ul className={header.mb_nav}>
+                {navItems.map((item, i) => {
+                  return (
+                    <li
+                      key={i}
+                      className={header.lists}
+                      onClick={() => setOpen(false)}
                     >
-                      {item.label}
-                    </Link>
-                  </li>
-                )
-              })}
-            </ul>
+                      <Link
+                        href={item.href}
+                        className={`${
+                          item.href === path
+                            ? header.nav_active
+                            : header.nav_inactive
+                        } ${header.mb_nav_link} `}
+                      >
+                        {item.label}
+                      </Link>
+                    </li>
+                  )
+                })}
+              </ul>
+            )}
             <div className={header.mb_nav_right}>
               {!isAuth ? (
                 <>

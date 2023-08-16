@@ -11,11 +11,11 @@ export const POST = async (request) => {
     const users = await prisma.users.findUnique({
       where: {
         email: email,
-        password: password,
       },
     })
-    console.log(users)
-    if (users) {
+    const isMatch = await bcryptjs.compare(password, users.password)
+
+    if (isMatch) {
       const tokenData = {
         id: users._id,
         username: users.name,
