@@ -1,6 +1,6 @@
 import React from "react"
 export const metadata = {
-  title: "Posts",
+  title: "Posts | Demo App",
 }
 
 const Layout = ({ children }) => {

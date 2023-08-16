@@ -20,11 +20,11 @@ const Header = () => {
   ]
 
   useEffect(() => {
+    console.log(window)
     axios
       .get("/api/getCookies")
       .then((res) => {
         setIsAuth(res.data.isAuthenticated)
-        console.log(res);
       })
       .catch((err) => {
         console.log(err)

@@ -6,7 +6,7 @@ export async function GET(request) {
   const decodedToken =
     token && jwt.verify(token.value, process.env.TOKEN_SECRET)
   if (decodedToken) {
-    return NextResponse.json({ isAuthenticated: true, token:token }, { status: 200 })
+    return NextResponse.json({ isAuthenticated: true }, { status: 200 })
   }
-  return NextResponse.json({ isAuthenticated: false,token:token }, { status: 200 })
+  return NextResponse.json({ isAuthenticated: false }, { status: 200 })
 }
