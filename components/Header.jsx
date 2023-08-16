@@ -24,6 +24,7 @@ const Header = () => {
       .get("/api/getCookies")
       .then((res) => {
         setIsAuth(res.data.isAuthenticated)
+        console.log(res);
       })
       .catch((err) => {
         console.log(err)
